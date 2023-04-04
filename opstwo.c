@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * push - Adds values to the tippy top of the stack
+ * push - Adds values to the top of the stack
  * @stack: Head of the stack
  * fix on github
  * @line_number: Line number of monty file
@@ -9,12 +9,12 @@
 
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tippy_top = NULL;
+	stack_t *top = NULL;
 
 	(void)line_number;
-	tippy_top = (*stack);
-	tippy_top = malloc(sizeof(stack_t));
-	if (tippy_top == NULL)
+	top = (*stack);
+	top = malloc(sizeof(stack_t));
+	if (top == NULL)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free_list(global_variable.stack);
@@ -22,12 +22,12 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	tippy_top->n = atoi(global_variable.number);
-	tippy_top->next = *stack;
-	tippy_top->prev = NULL;
+	top->n = atoi(global_variable.number);
+	top->next = *stack;
+	top->prev = NULL;
 	if (*stack != NULL)
-		(*stack)->prev = tippy_top;
-	*stack = tippy_top;
+		(*stack)->prev = top;
+	*stack = top;
 
 }
 
@@ -40,14 +40,14 @@ void push(stack_t **stack, unsigned int line_number)
 
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *printall;
+	stack_t *printem;
 
-	printall = (*stack);
+	printem = (*stack);
 	(void) line_number;
-	while (printall != NULL)
+	while (printem != NULL)
 	{
-		printf("%d\n", printall->n);
-		printall = printall->next;
+		printf("%d\n", printem->n);
+		printem = printem->next;
 	}
 }
 
@@ -61,7 +61,7 @@ void pall(stack_t **stack, unsigned int line_number)
 
 void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *bye_felicia = NULL;
+	stack_t *c_ya = NULL;
 
 	(void) line_number;
 	if (!stack || !(*stack))
@@ -71,14 +71,14 @@ void pop(stack_t **stack, unsigned int line_number)
 		fclose(global_variable.file);
 		exit(EXIT_FAILURE);
 	}
-	while (bye_felicia->prev != NULL)
+	while (c_ya->prev != NULL)
 	{
-		bye_felicia = bye_felicia->prev;
-	if (bye_felicia->next != NULL)
+		c_ya = c_ya->prev;
+	if (c_ya->next != NULL)
 	{
-		bye_felicia->next->prev = NULL;
+		c_ya->next->prev = NULL;
 	}
-	if (bye_felicia == *stack)
+	if (c_ya == *stack)
 	{
 		if ((*stack)->next != NULL)
 		{
@@ -89,7 +89,7 @@ void pop(stack_t **stack, unsigned int line_number)
 			(*stack) = NULL;
 		}
 	}
-	free(bye_felicia);
+	free(c_ya);
 	}
 }
 

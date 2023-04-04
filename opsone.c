@@ -3,25 +3,25 @@
 /**
  * swap - switch the top of the stack with second top stack
  * @stack: pointer to lists for monty stack
- * @line_number: the number the line opcode occurs on
+ * @line_number: the number the line opcode occers on
  */
 
 void swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *switcharoo;
+	stack_t *switcher;
 	int now;
 
-	switcharoo = (*stack);
-	if (!switcharoo || switcharoo->next == NULL)
+	switcher = (*stack);
+	if (!switcher || switcher->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		free_list(global_variable.stack);
 		fclose(global_variable.file);
 		exit(EXIT_FAILURE);
 	}
-	now = switcharoo->n;
-	switcharoo->n = switcharoo->next->n;
-	switcharoo->next->n = now;
+	now = switcher->n;
+	switcher->n = switcher->next->n;
+	switcher->next->n = now;
 }
 
 /**
